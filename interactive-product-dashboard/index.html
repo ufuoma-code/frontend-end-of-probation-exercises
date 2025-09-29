@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Interactive Product Dasboard</title>
+    <link href="https: //cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center p-3 bg-primary text-white">
+        <h1>class="h3">Product Dashboard</h1>
+        <div>
+            <button id="cart-btn" class="btn btn-light position-relative" aria-label="Shopping Cart">
+                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" aria-live="polite">0</span>
+            </button>
+        </div>
+    </header>
+    <main class="container my-4">
+        <div class="row mb-3">
+            <div class="col-md-4 mb-2">
+                <input id="search" type="text" class="form-control" placeholder="serach products..." aria-label="Search products">
+            </div>
+            <div class="col-md-4 mb-2">
+                <select id="sort" class="form-select" aria-label="Sort products">
+                    <option value="name">Sort by Name</option>
+                    <option value="price"> Sort by Price</option>                  
+                </select>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div role="group" aria-label="Filter by Category">
+                    <label>input type="checkbox" class="category-filter" value="Electronics"> Electronics</label>
+                    <label>input type="checkbox" class="category-filter" value="Clothing"> Clothing</label>
+                </div>
+            </div>
+        </div>
+        <div id="Product-List" class="row g-3" aria-live="polite"></div>
+    </main>
+    <script src="../JAVASCRIPT/ script.js"></script>
+</body>
+</html>
