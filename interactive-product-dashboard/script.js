@@ -1,13 +1,15 @@
-class product {
+document.addEventListener("DOMContentLoaded" ,() => {
+    class Product {
  constructor(id, name, price, category) {
     this.id = id;
     this.name = name;
     this.price = price;
     this.category = category;
  }
+
 }
 
-class cart {
+class Cart {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('cart')) || [];
     }
@@ -21,10 +23,10 @@ class cart {
 }
 
 const products = [
-    new product(1, "Phone" , 500, "Electronics"),
-    new product(2, "Laptop" , 1000, "Electronics"),
-    new product(3, "T-shirt" , 20, "Clothing"),
-    new product(4, "Shoes" , 50, "Clothing"),
+    new Product(1, "Phone" , 500, "Electronics"),
+    new Product(2, "Laptop" , 1000, "Electronics"),
+    new Product(3, "T-shirt" , 20, "Clothing"),
+    new Product(4, "Shoes" , 50, "Clothing"),
 ];
 
 const productList = document.getElementById("product-list");
@@ -38,7 +40,7 @@ const cart = new Cart();
 updateCartCount();
 
 function renderProducts(list) {
-    productList.innerHTML = "",
+    productList.innerHTML = "";
     list.forEach(p => {
         const col = document.createElement("div");
         col.className = "col-md-3";
@@ -47,7 +49,7 @@ function renderProducts(list) {
         <div class="card-body">
         <h5 class="card-title"> ${p.name}</h5>
         <p>$${p.price}</p>
-        <button class="btn btn-primary add-cart" data-id="${p.id}" aria-label="Add ${p.name} to cart" >Add to Cart</button>
+        <button class="btn btn-primary add-cart" data-id="${p.id}" aria-label="Add ${p.name} to cart">Add to Cart</button>
         </div>
         </div>`;
         productList.appendChild(col);
@@ -65,11 +67,11 @@ function renderProducts(list) {
 
 function filterProducts() {
     let result = [...products];
-    const search = searchInput.ariaValueMax.toLowerCase();
-    if (search.length >= 2) {
-        result.filter(p => p.name.toLowerCase().includes(search));
+    const search = searchInput.value.toLowerCase();
+    if (search) {
+        result = result.filter(p => p.name.toLowerCase().includes(search));
     }
-    const checked = [...filters].filter(filterProducts.checked).map(f => f.value);
+    const checked = [...filters].filter(f => f.checked).map(f => f.value);
     if (checked.length) {
         result = result.filter(p => checked.includes(p.category));
     }
@@ -90,3 +92,5 @@ sortSelect.addEventListener("change", filterProducts);
 filters.forEach(f => f.addEventListener("change", filterProducts));
 
 renderProducts(products);
+
+});
